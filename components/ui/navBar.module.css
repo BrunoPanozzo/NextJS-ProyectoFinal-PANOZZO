@@ -1,0 +1,13 @@
+.navEncabezado {
+    min-height: 15vh;
+    border-bottom: 10px solid #0b0606;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    align-items: flex-start;
+    align-content: space-between;
+    padding-top: 25px;
+  }
+  
