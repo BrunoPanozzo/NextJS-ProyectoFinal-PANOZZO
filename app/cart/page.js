@@ -32,7 +32,7 @@ const CartPage = () => {
             {cart.map(producto => (
                 <CartItem key={producto.slug} producto={producto} />
             ))}
-            <p className="pt-12 pb-12 text-2xl font-bold text-center">Ud. compró un total de {cantidadArticulosComprados} artículos por un monto total de $ {totalMonto()}</p>
+            <p className="pt-12 pb-12 text-2xl font-bold text-center">Ud. compró un total de {cantidadArticulosComprados} artículos por un monto total de $ {totalMonto().toLocaleString()}</p>
             <div className="flex flex-col items-center justify-center ">
                 <Link href="" className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]">Confirmar Compra</Link>
             </div>

@@ -46,7 +46,7 @@ const DetalleProducto = async ({ slug }) => {
                     </div>
                 </section>
                 <section className="mt-12 pt-20 text-2xl content-start">
-                    <p className="text-gray-600">{producto.description}</p>
+                    <p className="text-gray-600">{producto.descripcion}</p>
                 </section>
             </article>
         </div>

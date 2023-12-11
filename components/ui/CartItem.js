@@ -21,8 +21,8 @@ const CartItem = ({ producto }) => {
                 <div className="w-1/2">
                     <h5 className="mb-3">{producto.nombre}</h5>
                     <p className="pb-1 text-xl font-bold mb-0">Cantidad: {producto.quantity}</p>
-                    <p className="pb-1 text-xl font-bold mb-0">Precio por Unidad = $ {producto.precio}</p>
-                    <p className="pb-1 text-xl font-bold mb-0">Subtotal = $ {(producto.quantity * producto.precio)}</p>
+                    <p className="pb-1 text-xl font-bold mb-0">Precio por Unidad = $ {producto.precio.toLocaleString()}</p>
+                    <p className="pb-1 text-xl font-bold mb-0">Subtotal = $ {(producto.quantity * producto.precio).toLocaleString()}</p>
                 </div>
                 <div className="relative flex-grow max-w-full flex-1 px-4 self-center">
                     <Boton className="w-40 h-16 border font-normal rounded py-1 px-3 bg-orange-400 text-black hover:bg-orange-500 hover:text-decoration hover:text-center"

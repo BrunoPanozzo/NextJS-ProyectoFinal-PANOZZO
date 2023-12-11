@@ -8,7 +8,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     return {
         title: `Categoría - ${params.categoria}`,
-        description: `${params.description}`,
+        description: `${params.descripcion}`,
     }
 }
 
@@ -51,7 +51,7 @@ const ProductosPage = ({ params }) => {
             <div className="flex gap-10">
                 <MenuCategorias />
                 <Suspense fallback={<Loading texto={texto}/>}>
-                    <ListaProductos categoria={categoria} mostrarBotones={false} />
+                    <ListaProductos categoria={categoria}/>
                 </Suspense>
             </div>
         </main>

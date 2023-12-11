@@ -1,13 +1,28 @@
-import ListaProductos from "@/components/productos/ListaProductos"
+// import ListaProductos from "@/components/productos/ListaProductos"
 
-const AdminPage = () => {
+// const AdminPage = () => {
+
+//     return (
+//         <div className="container m-auto mt-6">      
+//             <h2 className="my-10 border-b border-red-900 pb-4 font-mono font-bold text-4xl text-center">Panel de Administración</h2>
+//             <ListaProductos categoria={"todos"} mostrarBotones={true}/>
+//         </div>                   
+//     )
+// }
+
+// export default AdminPage
+
+import ProductsTable from "@/components/admin/ProductsTable"
+
+const Admin = () => {
 
     return (
-        <div className="container m-auto mt-6">      
-            <h2 className="my-10 border-b border-red-900 pb-4 font-mono font-bold text-4xl text-center">Panel de Administración</h2>
-            <ListaProductos categoria={"todos"} mostrarBotones={true}/>
-        </div>                   
+        <div className="container m-auto mt-6">
+            <h2 className="text-4xl text-blue-600 my-4 text-center font-mono">Panel de Administración</h2>
+            <hr/>   
+            <ProductsTable />
+        </div>
     )
 }
 
-export default AdminPage
+export default Admin
