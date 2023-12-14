@@ -1,7 +1,7 @@
 'use client'
 import { useCartContext } from "@/context/CartContext";
 import Image from "next/image";
-import Boton from "./Boton";
+import Boton from "../ui/Boton";
 
 const CartItem = ({ producto }) => {
 

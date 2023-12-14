@@ -1,7 +1,7 @@
 import Image from "next/image"
 import styles from './navBar.module.css'
 import Link from 'next/link'
-import CartWidget from "./CartWidget"
+import CartWidget from "../cart/CartWidget"
 import NavBarItem from "./NavBarItem"
 
 const enlaces = [
