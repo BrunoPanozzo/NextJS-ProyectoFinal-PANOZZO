@@ -12,6 +12,7 @@
 
 // export default AdminPage
 
+import LogoutButton from "@/components/admin/LogoutButton"
 import ProductsTable from "@/components/admin/ProductsTable"
 
 const Admin = () => {
@@ -19,7 +20,8 @@ const Admin = () => {
     return (
         <div className="container m-auto mt-6">
             <h2 className="text-4xl text-blue-600 my-4 text-center font-mono">Panel de Administración</h2>
-            <hr/>   
+            <hr/>  
+            <LogoutButton /> 
             <ProductsTable />
         </div>
     )

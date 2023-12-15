@@ -6,7 +6,7 @@ import { useAuthContext } from "@/context/AuthContext"
 
 const LoginForm = () => {
 
-    const { createUser, loginUser } = useAuthContext()
+    const { registerUser, loginUser, googleLogin } = useAuthContext()
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -26,7 +26,7 @@ const LoginForm = () => {
     return (
         <div className="fixed w-screen h-screen inset-0 z-10 flex justify-center items-center bg-blue-400 bg-opacity-25">
             <form onSubmit={handleSubmit} className="bg-white px-8 pt-6 pb-8 mb-4 rounded-xl w-1/3">
-                <h2>Login</h2>
+                <h2 className="mb-5">Login</h2>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Email: </label>
                     <input type="email" value={values.email} name="email" onChange={handleChange} required placeholder="Tu email"
@@ -39,8 +39,8 @@ const LoginForm = () => {
                 </div>
 
                 <Boton onClick={() => loginUser(values)} className="mr-4">Ingresar</Boton>
-                <Boton onClick={() => createUser(values)}>Registrarme</Boton>
-                <Boton onClick={null} className="mt-2 block">Ingresar con Google</Boton>
+                <Boton onClick={() => registerUser(values)}>Registrarme</Boton>
+                <Boton onClick={googleLogin} className="ml-4">Ingresar con Google</Boton>
             </form>
 
         </div>

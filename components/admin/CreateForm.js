@@ -27,6 +27,8 @@ const createProduct = async (values, file) => {
     const fileURL = await getDownloadURL(fileSnapshot.ref)
 
     const docRef = doc(db, "productos", values.slug)
+    values.precio = parseInt(values.precio)
+    values.stock = parseInt(values.stock)
     return setDoc(docRef, {
         ...values,
         image: fileURL
