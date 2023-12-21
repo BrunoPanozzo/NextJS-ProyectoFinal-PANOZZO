@@ -1,14 +1,13 @@
 "use client"
 
-import { Suspense, useState } from "react"
+import { useState } from "react"
 import Boton from "../ui/Boton"
 import { doc, setDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { db, storage } from "@/firebase/config"
-import Retornar from "../ui/Retornar"
 import Link from "next/link"
-import Loading from "@/app/tienda/detail/[slug]/loading"
 import BotonEnviar from "../ui/BotonEnviar"
+import Retornar from "../ui/Retornar"
 
 // const createProduct = async (values, file) => {
 
@@ -52,6 +51,7 @@ const CreateForm = () => {
     const [file, setFile] = useState(null)
 
     const [altaExitosa, setAltaExitosa] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setValues({
@@ -62,9 +62,10 @@ const CreateForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         await createProduct(values, file)
         setAltaExitosa(true)
-
+        setLoading(false)
     }
 
     return (
@@ -108,12 +109,22 @@ const CreateForm = () => {
                             ?
                             <div className="flex flex-col items-center justify-center font-mono text-lg">
                                 <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">Producto creado exitosamente!!</h2>
-                                <Link href="/admin"> <Boton className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Volver</Boton></Link>
+                                <Retornar className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Volver</Retornar>
                             </div>
-
-                            : 
-                                <BotonEnviar type="submit" className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Aceptar</BotonEnviar>
-                            
+                            :
+                            <div>
+                                {loading
+                                    ?
+                                    <BotonEnviar>
+                                        Enviando...
+                                    </BotonEnviar>
+                                    :
+                                    <div className="flex flex-row items-center justify-center font-mono text-lg">
+                                        <Boton type="submit" className="font-mono text-lg my-4 hover:bg-[#3535da]">Aceptar</Boton>
+                                        <Retornar className="font-mono text-lg my-4 ml-10 hover:bg-[#3535da]">Volver</Retornar>
+                                    </div>
+                                }
+                            </div>
                     }
                 </div>
             </form>

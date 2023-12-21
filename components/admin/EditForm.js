@@ -6,13 +6,13 @@ import { doc, updateDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { db, storage } from "@/firebase/config"
 import Retornar from "../ui/Retornar"
-import Link from "next/link"
+import BotonEnviar from "../ui/BotonEnviar"
 
 const updateProduct = async (slug, values, file) => {
     let fileURL = values.imagen
 
     if (file) {
-        const storageRef = ref(storage, values.slug)
+        const storageRef = ref(storage, slug)
         const fileSnapshot = await uploadBytes(storageRef, file)
         fileURL = await getDownloadURL(fileSnapshot.ref)
     }
@@ -40,7 +40,8 @@ const EditForm = ({ producto }) => {
     })
     const [file, setFile] = useState(null)
 
-    const [altaExitosa, setAltaExitosa] = useState(false)
+    const [editExitoso, setEditExitoso] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setValues({
@@ -51,7 +52,10 @@ const EditForm = ({ producto }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         await updateProduct(producto.slug, values, file)
+        setEditExitoso(true)
+        setLoading(false)
     }
 
     return (
@@ -88,12 +92,26 @@ const EditForm = ({ producto }) => {
 
                 <div className="flex items-center justify-center font-mono text-lg">
                     {
-                        altaExitosa
-                            ? <div className="flex flex-col items-center justify-center font-mono text-lg">
+                        editExitoso
+                            ?
+                            <div className="flex flex-col items-center justify-center font-mono text-lg">
                                 <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">Producto modificado exitosamente!!</h2>
-                                <Link href="/admin"> <Boton className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Volver</Boton></Link>
+                                <Retornar className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Volver</Retornar>
                             </div>
-                            : <Boton type="submit" className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Guardar cambios</Boton>
+                            :
+                            <div>
+                                {loading
+                                    ?
+                                    <BotonEnviar>
+                                        Enviando...
+                                    </BotonEnviar>
+                                    :
+                                    <div className="flex flex-row items-center justify-center font-mono text-lg">
+                                        <Boton type="submit" className="font-mono text-lg my-4 hover:bg-[#3535da]">Guardar cambios</Boton>
+                                        <Retornar className="font-mono text-lg my-4 ml-10 hover:bg-[#3535da]">Volver</Retornar>
+                                    </div>
+                                }
+                            </div>
                     }
                 </div>
             </form>
