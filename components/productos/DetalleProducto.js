@@ -33,7 +33,7 @@ const DetalleProducto = async ({ slug }) => {
                 <section className="flex flex-row justify-center items-center">                
                     <div className="relative basis-1/2 pt-20 text-2xl content-start">
                         <Image
-                            src={`/imgs/productos/${producto.imagen}`}
+                            src={producto.imagen}
                             alt={producto.nombre}
                             width={860}
                             height={860}

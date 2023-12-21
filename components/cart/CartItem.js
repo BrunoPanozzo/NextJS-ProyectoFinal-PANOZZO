@@ -12,7 +12,7 @@ const CartItem = ({ producto }) => {
             <div className="flex flex-wrap">
                 <div className="relative flex-grow max-w-full flex-1 px-4">
                     <Image
-                        src={`/imgs/productos/${producto.imagen}`}
+                        src={producto.imagen}
                         className="img-fluid float-start rounded-start"
                         alt={producto.nombre}
                         width={300}

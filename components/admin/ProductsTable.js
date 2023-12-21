@@ -34,18 +34,18 @@ const ProductsTable = async () => {
                     <tbody>
                         {
                             items.map((item) => (
-                                <tr className="text-justify ">
+                                <tr key={item.slug} className="text-justify ">
                                     <td className="p-2">{item.nombre}</td>
                                     <td className="p-10 w-40">$ {item.precio.toLocaleString()}</td>
                                     <td className="p-2">{item.stock}</td>
                                     <td className="p-2">{item.categoria}</td>
                                     <td className="p-2">
                                         <Image
-                                            src={`/imgs/productos/${item.imagen}`}
+                                            src={item.imagen}
                                             alt={item.nombre}
                                             width={300}
                                             height={300}
-                                            className="hover:scale-125"
+                                            className="hover:scale-110"
                                         />
                                     </td>
                                     <td className="p-2">{item.slug}</td>

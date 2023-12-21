@@ -12,7 +12,7 @@ const Producto = ({ item }) => {
             >
                 <Image
                     alt={item.nombre}
-                    src={`/imgs/productos/${item.imagen}`}
+                    src={item.imagen}
                     width={300}
                     height={300}
                     style={{ objectFit: "contain" }}

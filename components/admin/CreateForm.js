@@ -1,10 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import Boton from "../ui/Boton"
 import { doc, setDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { db, storage } from "@/firebase/config"
+import Retornar from "../ui/Retornar"
+import Link from "next/link"
+import Loading from "@/app/tienda/detail/[slug]/loading"
+import BotonEnviar from "../ui/BotonEnviar"
 
 // const createProduct = async (values, file) => {
 
@@ -31,7 +35,7 @@ const createProduct = async (values, file) => {
     values.stock = parseInt(values.stock)
     return setDoc(docRef, {
         ...values,
-        image: fileURL
+        imagen: fileURL
     }).then(() => console.log("Producto creado exitosamente"))
 }
 const CreateForm = () => {
@@ -47,6 +51,8 @@ const CreateForm = () => {
 
     const [file, setFile] = useState(null)
 
+    const [altaExitosa, setAltaExitosa] = useState(false)
+
     const handleChange = (e) => {
         setValues({
             ...values,
@@ -57,6 +63,8 @@ const CreateForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await createProduct(values, file)
+        setAltaExitosa(true)
+
     }
 
     return (
@@ -94,8 +102,19 @@ const CreateForm = () => {
                     <textarea value={values.descripcion} name="descripcion" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" rows="5" type="text"></textarea>
                 </div>
 
-                <div className="flex items-center justify-between font-mono text-lg">
-                    <Boton type="submit" className="flex justify-between items-center ml-auto font-mono text-lg my-4">Enviar</Boton>
+                <div className="flex items-center justify-center font-mono text-lg">
+                    {
+                        altaExitosa
+                            ?
+                            <div className="flex flex-col items-center justify-center font-mono text-lg">
+                                <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">Producto creado exitosamente!!</h2>
+                                <Link href="/admin"> <Boton className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Volver</Boton></Link>
+                            </div>
+
+                            : 
+                                <BotonEnviar type="submit" className="flex justify-center items-center font-mono text-lg my-4 hover:bg-[#3535da]">Aceptar</BotonEnviar>
+                            
+                    }
                 </div>
             </form>
         </main>
