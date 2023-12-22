@@ -42,7 +42,6 @@ const LoginForm = () => {
                 <Boton onClick={() => registerUser(values)}>Registrarme</Boton>
                 <Boton onClick={googleLogin} className="ml-4">Ingresar con Google</Boton>
             </form>
-
         </div>
     )
 }

@@ -9,21 +9,6 @@ import Link from "next/link"
 import BotonEnviar from "../ui/BotonEnviar"
 import Retornar from "../ui/Retornar"
 
-// const createProduct = async (values, file) => {
-
-//     var data = new FormData()
-//     data.append('file', file)
-//     data.append('values', values)
-
-//     console.log(data);
-
-//     const response = await fetch('http://localhost:3000/api/altaproducto', {
-//             method: 'POST',
-//             // body: JSON.stringify(values)            
-//             body: data
-//         }).then(r => r.json())
-// }
-
 const createProduct = async (values, file) => {
     const storageRef = ref(storage, values.slug)
     const fileSnapshot = await uploadBytes(storageRef, file)

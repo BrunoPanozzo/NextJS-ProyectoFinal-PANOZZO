@@ -20,21 +20,39 @@ export function AuthProvider({ children }) {
         uid: null
     })
 
-    const crearRol = async (email) => {
-        const docRef = doc(db, "roles", email)
-        return setDoc(docRef, {
-            email: email,
-            rol: "noAdmin"
-        }).then(() => console.log("Asigno rol a nuevo usuario"))
+    const asignarRol = async (email) => {
+        if (email != "bapanozzo@hotmail.com") {
+            const docRef = doc(db, "roles", email)
+            return setDoc(docRef, {
+                email: email,
+                rol: "noAdmin"
+            }).then(() => console.log("Asigno rol a nuevo usuario"))
+        }
     }
 
     const registerUser = async (values) => {
         await createUserWithEmailAndPassword(auth, values.email, values.password)
-        crearRol(values.email)
+            .then(() => {
+                asignarRol(values.email)
+                return true
+            })
+            .catch((error) => {
+                // var errorCode = error.code;
+                // console.log(errorCode)
+                return false
+            });
     }
 
     const loginUser = async (values) => {
         await signInWithEmailAndPassword(auth, values.email, values.password)
+            .then(() => {
+                return true
+            })
+            .catch((error) => {
+                // var errorCode = error.code;
+                // console.log(errorCode)
+                return false
+            });
     }
 
     const logout = async () => {
@@ -43,7 +61,14 @@ export function AuthProvider({ children }) {
 
     const googleLogin = async () => {
         await signInWithPopup(auth, provider)
-        crearRol(auth.currentUser.email)
+            .then(() => {
+                asignarRol(auth.currentUser.email)
+                return true
+            }).catch((error) => {
+                // var errorCode = error.code;
+                // console.log(errorCode)
+                return false
+            });
     }
 
     useEffect(() => {
@@ -62,7 +87,7 @@ export function AuthProvider({ children }) {
                 else {
                     router.push("/unauthorized")
                     logout()
-                }
+                }                
             }
             else {
                 setUser({
