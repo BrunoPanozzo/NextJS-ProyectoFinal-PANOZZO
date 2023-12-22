@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
     })
 
     const asignarRol = async (email) => {
-        if (email != "bapanozzo@hotmail.com") {
+        if (email != "bapanozzo@hotmail.com") {  //UNICO email con rol de ADMIN
             const docRef = doc(db, "roles", email)
             return setDoc(docRef, {
                 email: email,
@@ -34,25 +34,25 @@ export function AuthProvider({ children }) {
         await createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
                 asignarRol(values.email)
-                return true
+                // return true
             })
-            .catch((error) => {
-                // var errorCode = error.code;
-                // console.log(errorCode)
-                return false
-            });
+            // .catch((error) => {
+            //     var errorCode = error.code;
+            //     console.log(errorCode)
+            //     return false
+            // });
     }
 
     const loginUser = async (values) => {
         await signInWithEmailAndPassword(auth, values.email, values.password)
-            .then(() => {
-                return true
-            })
-            .catch((error) => {
-                // var errorCode = error.code;
-                // console.log(errorCode)
-                return false
-            });
+            // .then(() => {
+            //     return true
+            // })
+            // .catch((error) => {
+            //     var errorCode = error.code;
+            //     console.log(errorCode)
+            //     return false
+            // });
     }
 
     const logout = async () => {
@@ -63,12 +63,13 @@ export function AuthProvider({ children }) {
         await signInWithPopup(auth, provider)
             .then(() => {
                 asignarRol(auth.currentUser.email)
-                return true
-            }).catch((error) => {
-                // var errorCode = error.code;
-                // console.log(errorCode)
-                return false
-            });
+                // return true
+            })
+            // .catch((error) => {
+            //     var errorCode = error.code;
+            //     console.log(errorCode)
+            //     return false
+            // });
     }
 
     useEffect(() => {

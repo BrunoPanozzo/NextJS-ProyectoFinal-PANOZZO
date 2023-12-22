@@ -39,8 +39,10 @@ const Contador = ({ item }) => {
     }
 
     useEffect(() => {
-        actualizarStock(item.slug)
-    })
+        const item = getItem(item.slug)
+        if (item)
+            setStockDisponible(stockDisponible - item.quantity)
+    }, [getItem, stockDisponible])
 
     return (
         <div className={styles.container}>
