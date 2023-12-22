@@ -15,7 +15,7 @@ const deleteProduct = async (slug) => {
 }
 const DeleteForm = ({ producto }) => {
 
-    const { nombre, slug, precio, imagen } = producto
+    const { nombre, slug, precio, stock, imagen } = producto
 
     const [deleteExitoso, setDeleteExitoso] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -29,8 +29,8 @@ const DeleteForm = ({ producto }) => {
 
     return (
         <main className="container m-auto w-3/6">
-            <h1 className="font-bold text-4xl text-center mb-10">Producto a Eliminar</h1>
-            <h2 className="text-5xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{nombre}</h2>
+            <p className="font-bold text-3xl text-center mt-10">Se está por eliminar el siguiente producto:</p>
+            <p className="text-5xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{nombre}</p>
             <article className="bg-gray-200 flex flex-col justify-center items-center p-12">
                 <section className="flex flex-row justify-center items-center">
                     <div className="relative basis-1/2 pt-20 text-2xl content-start">
@@ -43,7 +43,8 @@ const DeleteForm = ({ producto }) => {
                         />
                     </div>
                     <div>
-                        <p className="text-center pb-10 text-5xl font-bold">$ {precio.toLocaleString()}</p>
+                        <p className="text-center pb-10 text-3xl font-bold">$ {precio.toLocaleString()}</p>
+                        <p className="text-center pb-10 text-3xl font-bold">Stock disponible: {stock}</p>
                         <div className="flex items-center justify-center font-mono text-lg">
                             {
                                 deleteExitoso
