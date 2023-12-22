@@ -40,7 +40,7 @@ const Contador = ({ item }) => {
 
     useEffect(() => {
         actualizarStock(item.slug)
-    }, [])
+    })
 
     return (
         <div className={styles.container}>

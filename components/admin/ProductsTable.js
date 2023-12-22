@@ -5,9 +5,14 @@ import Eliminar from "@/public/icons/borrar.png"
 import Editar from "@/public/icons/editar.png"
 
 const ProductsTable = async () => {
-    const items = await fetch(`http://localhost:3000/api/productos/todos`, {
+    const response = await fetch(`http://localhost:3000/api/productos/todos`, {
         cache: 'no-store',
-    }).then(r => r.json())
+    })
+    
+    if (!response.ok)
+        throw new Error("Falló la obtención de los productos.")
+    
+    return response.json()
 
     return (
         <>

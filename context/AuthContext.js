@@ -97,7 +97,7 @@ export function AuthProvider({ children }) {
                 })
             }
         })
-    }, [])
+    }, [router])
 
     return (<AuthContext.Provider value={{
         user,

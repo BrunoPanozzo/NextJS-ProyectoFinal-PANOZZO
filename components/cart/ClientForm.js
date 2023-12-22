@@ -76,7 +76,7 @@ const ClientForm = () => {
                 finalizarCompra
                     ?
                     <div className="flex flex-col items-center justify-center font-mono text-lg">
-                        <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{`Orden de compra ${orderId} generada exitosamente!!`}</h2>
+                        <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{`Orden de compra  generada exitosamente!!`}</h2>
                         <Link href="/tienda/todos" className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]">Volver a la Tienda</Link>
                     </div>
                     :

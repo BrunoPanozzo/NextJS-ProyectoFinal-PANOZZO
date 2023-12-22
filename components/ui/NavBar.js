@@ -39,7 +39,7 @@ const NavBar = () => {
             <div className="flex-initial justify-center items-end text-center px-44 py-2 m-2">
                 {
                     enlaces.map(link => {
-                        return <NavBarItem enlace={link}/>
+                        return <NavBarItem key={link.label} enlace={link}/>
                     })
                 }
             </div>
