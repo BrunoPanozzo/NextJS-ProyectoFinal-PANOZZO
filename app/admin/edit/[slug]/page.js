@@ -2,7 +2,7 @@ import EditForm from "@/components/admin/EditForm"
 
 const getProducto = async (slug) => {
 
-    const response = await fetch(`http://localhost:3000/api/productio/${slug}`,{ cache: "no-store" })
+    const response = await fetch(`http://localhost:3000/api/producto/${slug}`,{ cache: "no-store" })
 
     if (!response.ok)
         throw new Error("Falló la obtención del producto.")
