@@ -34,13 +34,15 @@ export function AuthProvider({ children }) {
         await createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
                 asignarRol(values.email)
-                // return true
+                console.log("true")
+                resolve(true)
             })
-            // .catch((error) => {
-            //     var errorCode = error.code;
-            //     console.log(errorCode)
-            //     return false
-            // });
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log(errorCode)
+                console.log("false")
+                reject(false)
+            });
     }
 
     const loginUser = async (values) => {
