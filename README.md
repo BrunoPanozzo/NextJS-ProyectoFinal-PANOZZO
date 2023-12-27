@@ -39,6 +39,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Para acceder al panel de administración de los productos de la tienda, debe utilizar el siguiente usuario y contraseña:    
 
-    - user: admin@coder.com
-    - password: 123456
+   - user: admin@coder.com
+   - password: 123456
 
