@@ -3,6 +3,7 @@ import styles from './navBar.module.css'
 import Link from 'next/link'
 import CartWidget from "../cart/CartWidget"
 import NavBarItem from "./NavBarItem"
+import UserLogin from "./UserLogin"
 
 const enlaces = [
     {
@@ -44,6 +45,7 @@ const NavBar = () => {
                 }
             </div>
 
+            <UserLogin/>
             <CartWidget />
 
         </nav>

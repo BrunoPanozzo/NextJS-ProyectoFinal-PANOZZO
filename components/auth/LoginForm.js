@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Boton from "../ui/Boton"
 import { useAuthContext } from "@/context/AuthContext"
-import Swal from "sweetalert2";
+import Link from "next/link"
 
 const LoginForm = () => {
 
@@ -40,35 +40,10 @@ const LoginForm = () => {
                         className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
                 </div>
 
-                <Boton onClick={() => loginUser(values)} className="mr-4">Ingresar</Boton>
-                <Boton onClick={() => {
-                    var result = registerUser(values)
-                    result.then(
-                        Swal.fire({
-                            title: 'Está seguro de vaciar el carrito de entradas?',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Confirmar.',
-                            cancelButtonText: 'Cancelar.'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire({
-                                    title: 'Carrito vaciado!',
-                                    icon: 'success',
-                                    text: 'Se han borrado todas la compras de entradas.'
-                                })
-                            }
-                        }))
-                    result.catch(
-                        Swal.fire({
-                            title: 'Se produjo un error en la registración.',
-                            icon: 'error',
-                            text: 'Se produjo un error en la registración.'
-                        })
-                    )
-
-                }}>Registrarme</Boton>
-                <Boton onClick={googleLogin} className="ml-4">Ingresar con Google</Boton>
+                <Boton onClick={() => loginUser(values)} className="ml-4 hover:bg-[#3535da]">Ingresar</Boton>
+                <Boton onClick={() => registerUser(values)} className="ml-4 hover:bg-[#3535da]">Registrarme</Boton>
+                <Boton onClick={googleLogin} className="ml-4 hover:bg-[#3535da]">Ingresar con Google</Boton>
+                <Link href="/" className="rounded-lg ml-4 py-2 px-4 bg-blue-400 text-white text-center hover:bg-[#3535da]">Salir</Link>
             </form>
         </div >
     )
