@@ -4,6 +4,7 @@ import Link from 'next/link'
 import CartWidget from "../cart/CartWidget"
 import NavBarItem from "./NavBarItem"
 import UserLogin from "./UserLogin"
+import LogoutButton from "../admin/LogoutButton"
 
 const enlaces = [
     {
@@ -40,13 +41,15 @@ const NavBar = () => {
             <div className="flex-initial justify-center items-end text-center px-44 py-2 m-2">
                 {
                     enlaces.map(link => {
-                        return <NavBarItem key={link.label} enlace={link}/>
+                        return <NavBarItem key={link.label} enlace={link} />
                     })
                 }
             </div>
-
-            <UserLogin/>
-            <CartWidget />
+            <div className="flex flex-row items-center">
+                <UserLogin />
+                <LogoutButton className="ml-14">Cerrar sesión</LogoutButton>
+                <CartWidget />
+            </div>
 
         </nav>
     )

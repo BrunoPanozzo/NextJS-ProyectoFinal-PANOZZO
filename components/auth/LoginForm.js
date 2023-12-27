@@ -7,7 +7,6 @@ import Link from "next/link"
 
 const LoginForm = () => {
 
-
     const { registerUser, loginUser, googleLogin } = useAuthContext()
     const [values, setValues] = useState({
         nombre: '',

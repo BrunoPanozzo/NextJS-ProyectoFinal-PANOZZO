@@ -2,10 +2,9 @@
 
 import { useAuthContext } from "@/context/AuthContext"
 
-
 const AdminLayout = ({ children, login }) => {
 
-    const { user } = useAuthContext()
+    const { user } = useAuthContext()     
 
     return (
         <div>

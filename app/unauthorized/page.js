@@ -1,4 +1,4 @@
-import Retornar from '@/components/ui/Retornar'
+import Link from "next/link";
 
 export default function UnauthorizedPage() {   
 
@@ -8,9 +8,8 @@ export default function UnauthorizedPage() {
                 <h1 className="text-4xl text-blue-600 my-4">No tiene permisos de Administrador.</h1>
                 <hr />
                
-                <Retornar>
-                    Volver
-                </Retornar>
+                <Link href="/" className="rounded-lg ml-4 mt-2 py-2 px-4 bg-blue-400 text-white text-center hover:bg-[#3535da]">Volver</Link>
+
             </main>
         </>
     )

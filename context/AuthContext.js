@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db, provider } from '@/firebase/config';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import Swal from "sweetalert2";
@@ -22,10 +22,7 @@ export function AuthProvider({ children }) {
         uid: null
     })
 
-    const asignarRol = async (nombre, email) => {
-        console.log(nombre)
-        console.log(email)
-
+    const asignarRol = async (nombre, email) => {        
         if (email != "admin@coder.com") {  //UNICO email con rol de ADMIN
             const docRef = doc(db, "roles", email)
             return setDoc(docRef, {
@@ -46,8 +43,15 @@ export function AuthProvider({ children }) {
 
     const registerUser = async (values) => {
         await createUserWithEmailAndPassword(auth, values.email, values.password)
-            .then(() => {
+            .then((userCredential) => {
                 asignarRol(values.nombre, values.email)
+                const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: values.nombre,
+                    // photoURL: ''
+                  });
+                console.log(user)
+
                 var msje = ""
                 if (values.email != "admin@coder.com")
                     msje = "El usuario no posee permisos de Administrador, se encuentra habilitado únicamente para realizar compras en la Tienda."
@@ -99,6 +103,7 @@ export function AuthProvider({ children }) {
 
     const logout = async () => {
         await signOut(auth)
+        router.push("/admin")
     }
 
     const googleLogin = async () => {
@@ -123,15 +128,20 @@ export function AuthProvider({ children }) {
                 if (userDoc.data()?.rol === "admin") {
                     setUser({
                         logged: true,
-                        nombre: user.nombre,
+                        nombre: user.displayName,
                         email: user.email,
                         uid: user.uid
                     })
-                    console.log(user)
                 }
                 else {
                     router.push("/unauthorized")
-                    logout()
+                    // logout()
+                    setUser({
+                        logged: true,
+                        nombre: user.displayName,
+                        email: user.email,
+                        uid: user.uid
+                    })
                 }
             }
             else {
@@ -141,6 +151,7 @@ export function AuthProvider({ children }) {
                     email: null,
                     uid: null
                 })
+                logout()
             }
         })
     }, [router])
