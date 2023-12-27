@@ -17,14 +17,19 @@ export function AuthProvider({ children }) {
 
     const [user, setUser] = useState({
         logged: false,
+        nombre: null,
         email: null,
         uid: null
     })
 
-    const asignarRol = async (email) => {
+    const asignarRol = async (nombre, email) => {
+        console.log(nombre)
+        console.log(email)
+
         if (email != "admin@coder.com") {  //UNICO email con rol de ADMIN
             const docRef = doc(db, "roles", email)
             return setDoc(docRef, {
+                nombre: nombre,
                 email: email,
                 rol: "noAdmin"
             }).then(() => console.log("Asigno rol noAdmin a nuevo usuario"))
@@ -32,6 +37,7 @@ export function AuthProvider({ children }) {
         else {
             const docRef = doc(db, "roles", email)
             return setDoc(docRef, {
+                nombre: nombre,
                 email: email,
                 rol: "admin"
             }).then(() => console.log("Asigno rol Admin a nuevo usuario"))
@@ -41,7 +47,7 @@ export function AuthProvider({ children }) {
     const registerUser = async (values) => {
         await createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
-                asignarRol(values.email)
+                asignarRol(values.nombre, values.email)
                 var msje = ""
                 if (values.email != "admin@coder.com")
                     msje = "El usuario no posee permisos de Administrador, se encuentra habilitado únicamente para realizar compras en la Tienda."
@@ -117,9 +123,11 @@ export function AuthProvider({ children }) {
                 if (userDoc.data()?.rol === "admin") {
                     setUser({
                         logged: true,
+                        nombre: user.nombre,
                         email: user.email,
                         uid: user.uid
                     })
+                    console.log(user)
                 }
                 else {
                     router.push("/unauthorized")
@@ -129,6 +137,7 @@ export function AuthProvider({ children }) {
             else {
                 setUser({
                     logged: false,
+                    nombre: null,
                     email: null,
                     uid: null
                 })
