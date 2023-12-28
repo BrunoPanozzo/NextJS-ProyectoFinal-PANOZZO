@@ -8,7 +8,6 @@ const Admin = () => {
         <div className="container m-auto mt-6">
             <h2 className="text-4xl text-blue-600 my-4 text-center font-mono">Panel de Administración</h2>
             <hr/>  
-            {/* <LogoutButton />  */}
             <ProductsTable />
         </div>
     )

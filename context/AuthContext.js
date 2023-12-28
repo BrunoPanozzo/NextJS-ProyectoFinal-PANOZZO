@@ -48,10 +48,8 @@ export function AuthProvider({ children }) {
                 const user = userCredential.user;
                 updateProfile(user, {
                     displayName: values.nombre,
-                    // photoURL: ''
                   });
-                console.log(user)
-
+                
                 var msje = ""
                 if (values.email != "admin@coder.com")
                     msje = "El usuario no posee permisos de Administrador, se encuentra habilitado únicamente para realizar compras en la Tienda."
@@ -110,40 +108,37 @@ export function AuthProvider({ children }) {
         await signInWithPopup(auth, provider)
             .then(() => {
                 asignarRol(auth.currentUser.email)
-                // return true
-            })
-        // .catch((error) => {
-        //     var errorCode = error.code;
-        //     console.log(errorCode)
-        //     return false
-        // });
+            })       
     }
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                const docRef = doc(db, "roles", user.email)
-                const userDoc = await getDoc(docRef)
+                // const docRef = doc(db, "roles", user.email)
+                // const userDoc = await getDoc(docRef)
 
-                if (userDoc.data()?.rol === "admin") {
-                    setUser({
-                        logged: true,
-                        nombre: user.displayName,
-                        email: user.email,
-                        uid: user.uid
-                    })
-                }
-                else {
-                    // router.push("/unauthorized")
-                    // logout()
-
-                    setUser({
-                        logged: true,
-                        nombre: user.displayName,
-                        email: user.email,
-                        uid: user.uid
-                    })
-                }
+                // if (userDoc.data()?.rol === "admin") {
+                //     setUser({
+                //         logged: true,
+                //         nombre: user.displayName,
+                //         email: user.email,
+                //         uid: user.uid
+                //     })
+                // }
+                // else {
+                //     setUser({
+                //         logged: true,
+                //         nombre: user.displayName,
+                //         email: user.email,
+                //         uid: user.uid
+                //     })
+                // }
+                setUser({
+                    logged: true,
+                    nombre: user.displayName,
+                    email: user.email,
+                    uid: user.uid
+                })
             }
             else {
                 setUser({
