@@ -1,34 +1,16 @@
 'use client'
 
 import { useAuthContext } from "@/context/AuthContext";
-import { db } from "@/firebase/config";
-import { getDoc } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-import LogoutButton from "../admin/LogoutButton";
-import { useRouter } from "next/navigation";
 
 const UserLogin = () => {
 
     const { user } = useAuthContext()
 
-    const router = useRouter()
-
-    var href = ""
-
-    user.logged && user.email === "admin@coder.com"
-        ?
-        href = "/admin"
-        :
-        user.logged
-            ?
-            href = "/unauthorized"
-            :
-            href = "/admin"
-
     return (
         <div className="sticky top-0">
-            <Link className="flex flex-row" href={href}>
+            <Link className="flex flex-row" href="/admin">
                 <Image className="align-middle text-center font-normal py-1 px-3 leading-normal btn-ligth relative"
                     src={"/imgs/NavBar/login.png"}
                     alt='User LogIn'

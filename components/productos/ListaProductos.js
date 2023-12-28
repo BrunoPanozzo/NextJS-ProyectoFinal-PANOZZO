@@ -1,13 +1,11 @@
-// import { mockData } from '@/data/productos'
 import Producto from './Producto'
-import Boton from '../ui/Boton'
 
 const getProductos = async (categoria) => {
 
-    const response = await await fetch(`http://localhost:3000/api/productos/${categoria}`, { cache: 'no-cache' })
+    const response = await fetch(`http://localhost:3000/api/productos/${categoria}`, { cache: 'no-store' })
 
-    if (!response.ok)
-        throw new Error("Falló la obtención de los productos.")
+    // if (!response.ok)
+    //     throw new Error("Falló la obtención de los productos.")
 
     return response.json()
 }

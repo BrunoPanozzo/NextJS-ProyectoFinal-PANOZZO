@@ -45,10 +45,10 @@ const NavBar = () => {
                     })
                 }
             </div>
-            <div className="flex flex-row items-center">
-                <UserLogin />
-                <LogoutButton className="ml-14">Cerrar sesión</LogoutButton>
-                <CartWidget />
+            <div className="flex flex-row align-middle items-center text-center">
+            <UserLogin/>
+            <LogoutButton className="ml-20"/>
+            <CartWidget />
             </div>
 
         </nav>

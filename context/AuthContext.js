@@ -102,8 +102,8 @@ export function AuthProvider({ children }) {
     }
 
     const logout = async () => {
-        await signOut(auth)
-        router.push("/admin")
+        await signOut(auth)    
+        router.push("/admin")    
     }
 
     const googleLogin = async () => {
@@ -134,8 +134,9 @@ export function AuthProvider({ children }) {
                     })
                 }
                 else {
-                    router.push("/unauthorized")
+                    // router.push("/unauthorized")
                     // logout()
+
                     setUser({
                         logged: true,
                         nombre: user.displayName,
