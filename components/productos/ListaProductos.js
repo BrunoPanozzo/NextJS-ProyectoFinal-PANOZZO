@@ -3,7 +3,7 @@ import Producto from './Producto'
 const getProductos = async (categoria) => {
 
     try {
-        const response = await fetch(`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/productos/${categoria}`, { cache: 'no-store' })
+        const response = await fetch(`http://localhost:3000/api/productos/${categoria}`, { cache: 'no-store' })
 
         // if (!response.ok)
         //     throw new Error("Falló la obtención de los productos.")

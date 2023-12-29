@@ -7,7 +7,7 @@ import Editar from "@/public/icons/editar.png"
 const ProductsTable = async () => {
     var items = null
     try {
-        items = await fetch(`http://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/productos/todos`, {
+        items = await fetch(`http://localhost:3000/api/productos/todos`, {
             cache: 'no-store',
         }).then(r => r.json())
 
