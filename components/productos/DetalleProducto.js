@@ -5,15 +5,21 @@ import NotFound from "@/app/not-found"
 
 const getProducto = async (slug) => {
 
-    const response = await fetch(`http://localhost:3000/api/producto/${slug}`,{ cache: "no-store" })
+    try {
+        const response = await fetch(`http://${process.env.VERCEL_URL}/api/producto/${slug}`, { cache: "no-store" })
 
-    if (!response.ok)
-        throw new Error("Falló la obtención del producto.")
+        if (!response.ok)
+            throw new Error("Falló la obtención del producto.")
 
-    return response.json()
+        return response.json()
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+        return null
+    }
 }
 
-const DetalleProducto = async ({ slug }) => {    
+const DetalleProducto = async ({ slug }) => {
 
     const producto = await getProducto(slug);
 
@@ -30,7 +36,7 @@ const DetalleProducto = async ({ slug }) => {
             <h1 className="font-bold text-4xl text-center mb-10">Producto Seleccionado</h1>
             <h2 className="text-5xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{producto.nombre}</h2>
             <article className="bg-gray-200 flex flex-col justify-center items-center p-12">
-                <section className="flex flex-row justify-center items-center">                
+                <section className="flex flex-row justify-center items-center">
                     <div className="relative basis-1/2 pt-20 text-2xl content-start">
                         <Image
                             src={producto.imagen}
@@ -40,7 +46,7 @@ const DetalleProducto = async ({ slug }) => {
                             className="h-auto w-11/12"
                         />
                     </div>
-                    <div>                        
+                    <div>
                         <p className="text-center pb-10 text-5xl font-bold">$ {producto.precio.toLocaleString()}</p>
                         <Contador item={producto} />
                     </div>

@@ -2,15 +2,21 @@ import EditForm from "@/components/admin/EditForm"
 
 const getProducto = async (slug) => {
 
-    const response = await fetch(`http://localhost:3000/api/producto/${slug}`,{ cache: "no-store" })
+    try {
+        const response = await fetch(`http://${process.env.VERCEL_URL}/api/producto/${slug}`, { cache: "no-store" })
 
-    if (!response.ok)
-        throw new Error("Falló la obtención del producto.")
+        if (!response.ok)
+            throw new Error("Falló la obtención del producto.")
 
-    return response.json()
+        return response.json()
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+        return null
+    }
 }
 
-const EditPage = async ({params}) => {
+const EditPage = async ({ params }) => {
 
     const { slug } = params
 

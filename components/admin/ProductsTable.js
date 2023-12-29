@@ -5,10 +5,17 @@ import Eliminar from "@/public/icons/borrar.png"
 import Editar from "@/public/icons/editar.png"
 
 const ProductsTable = async () => {
-    const items = await fetch(`http://localhost:3000/api/productos/todos`, {
-        cache: 'no-store',
-    }).then(r => r.json())
-        
+    var items = null
+    try {
+        items = await fetch(`http://${process.env.VERCEL_URL}/api/productos/todos`, {
+            cache: 'no-store',
+        }).then(r => r.json())
+
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+    }
+
     return (
         <>
             <Link href={"/admin/create"}>
