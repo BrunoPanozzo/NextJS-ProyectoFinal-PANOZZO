@@ -1,10 +1,16 @@
 import Producto from './Producto'
 
 const ListaProductos = async ({ categoria }) => {
-
-    const items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}`, {
-        cache: 'no-store',
-    }).then(r => r.json())
+    var items = null
+    try {
+        items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}`, {
+            cache: 'no-store',
+        }).then(r => r.json())
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+        return null
+    }
 
     return (
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">

@@ -9,18 +9,16 @@ const ProductsTable = async () => {
     // items = await fetch(`http://localhost:3000/api/productos/todos`, {
     //     cache: 'no-store',
     // }).then(r => r.json())
-    // const items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
-    //     cache: 'no-store',
-    // }).then(r => r.json())
-
-    const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
-    cache: 'no-store',
-});
-
-const jsonResponse = await response.text();
-console.log("JSON response:", jsonResponse);
-
-const items = JSON.parse(jsonResponse);
+    var items = null
+    try {
+        items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
+            cache: 'no-store',
+        }).then(r => r.json())
+    }
+    catch (error) {
+        console.error('Fetch error:', error);
+        return null
+    }
 
     return (
         <>
