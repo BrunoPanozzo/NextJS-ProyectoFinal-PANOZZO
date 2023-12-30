@@ -9,9 +9,18 @@ const ProductsTable = async () => {
     // items = await fetch(`http://localhost:3000/api/productos/todos`, {
     //     cache: 'no-store',
     // }).then(r => r.json())
-    const items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
-        cache: 'no-store',
-    }).then(r => r.json())
+    // const items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
+    //     cache: 'no-store',
+    // }).then(r => r.json())
+
+    const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/todos`, {
+    cache: 'no-store',
+});
+
+const jsonResponse = await response.text();
+console.log("JSON response:", jsonResponse);
+
+const items = JSON.parse(jsonResponse);
 
     return (
         <>
@@ -35,65 +44,57 @@ const ProductsTable = async () => {
                             <th scope="col" className="px-3 py-2">Acciones</th>
                         </tr>
                     </thead>
-                    {
-                        console.log("items" + items)
-                    }
-                    {
-                        items
-                            ?
-                            <tbody>
-                                {
-                                    items.map((item) => (
-                                        <tr key={item.slug} className="text-justify ">
-                                            <td className="p-2">{item.nombre}</td>
-                                            <td className="p-10 w-40">$ {item.precio.toLocaleString()}</td>
-                                            <td className="p-2">{item.stock}</td>
-                                            <td className="p-2">{item.categoria}</td>
-                                            <td className="p-2">
-                                                <Image
-                                                    src={item.imagen}
-                                                    alt={item.nombre}
-                                                    width={300}
-                                                    height={300}
-                                                    className="hover:scale-110"
-                                                />
-                                            </td>
-                                            <td className="p-2">{item.slug}</td>
-                                            <td className="p-2 max-w-prose">{item.descripcion}</td>
-                                            <td className="p-2">
-                                                <div className="flex justify-center items-center gap-2">
-                                                    <Link
-                                                        href={`/admin/edit/${item.slug}`}
-                                                    // className="rounded bg-green-400 p-2 text-white"
-                                                    >
-                                                        <Image
-                                                            src={Editar}
-                                                            alt="Icono editar"
-                                                            width={30}
-                                                            height={30}
-                                                        />
-                                                    </Link>
 
-                                                    <Link
-                                                        href={`/admin/delete/${item.slug}`}
-                                                    // className="rounded bg-red-400 p-2 text-white"
-                                                    >
-                                                        <Image
-                                                            src={Eliminar}
-                                                            alt="Icono eliminar"
-                                                            width={30}
-                                                            height={30}
-                                                        />
-                                                    </Link>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                            :
-                            <tbody></tbody>
-                    }
+                    <tbody>
+                        {
+                            items.map((item) => (
+                                <tr key={item.slug} className="text-justify ">
+                                    <td className="p-2">{item.nombre}</td>
+                                    <td className="p-10 w-40">$ {item.precio.toLocaleString()}</td>
+                                    <td className="p-2">{item.stock}</td>
+                                    <td className="p-2">{item.categoria}</td>
+                                    <td className="p-2">
+                                        <Image
+                                            src={item.imagen}
+                                            alt={item.nombre}
+                                            width={300}
+                                            height={300}
+                                            className="hover:scale-110"
+                                        />
+                                    </td>
+                                    <td className="p-2">{item.slug}</td>
+                                    <td className="p-2 max-w-prose">{item.descripcion}</td>
+                                    <td className="p-2">
+                                        <div className="flex justify-center items-center gap-2">
+                                            <Link
+                                                href={`/admin/edit/${item.slug}`}
+                                            // className="rounded bg-green-400 p-2 text-white"
+                                            >
+                                                <Image
+                                                    src={Editar}
+                                                    alt="Icono editar"
+                                                    width={30}
+                                                    height={30}
+                                                />
+                                            </Link>
+
+                                            <Link
+                                                href={`/admin/delete/${item.slug}`}
+                                            // className="rounded bg-red-400 p-2 text-white"
+                                            >
+                                                <Image
+                                                    src={Eliminar}
+                                                    alt="Icono eliminar"
+                                                    width={30}
+                                                    height={30}
+                                                />
+                                            </Link>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
                 </table>
             </div >
         </>
