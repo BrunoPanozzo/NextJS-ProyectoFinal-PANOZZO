@@ -4,7 +4,7 @@ const getProducto = async (slug) => {
 
     try {
         // const response = await fetch(`http://localhost:3000/api/producto/${slug}`, { cache: "no-store" })
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/api/producto/${slug}`, { cache: "no-store" })
+        const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/producto/${slug}`, { cache: "no-store" })
 
         if (!response.ok)
             throw new Error("Falló la obtención del producto.")

@@ -9,5 +9,6 @@ export async function GET(request, {params}) {
     const q = categoria === 'todos'? coleccionProductos : query(coleccionProductos, where("categoria", "==", categoria))
     const querySnapshot = await getDocs(q)
     const productosFiltrados = querySnapshot.docs.map(doc => doc.data())
+    console.log(productosFiltrados)
     return NextResponse.json(productosFiltrados)
 }
