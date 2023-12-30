@@ -4,19 +4,19 @@ const ListaProductos = async ({ categoria }) => {
 
     const items = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}`, {
         cache: 'no-store',
-    }).then(r => r.json())
+    }).then((r) => {
+        r.json()
+        // console.log("JSON data:", r.json());
+        // const parsedData = JSON.parse(r.json());   
+        // console.log("JSON parsedData:", parsedData);
+    })
 
     return (        
-        // <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
-        //     {
-        //         items.map(item => <Producto key={item.slug} item={item} />)
-        //     }
-        // </section>
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">
             {
-                items.map(item => <Producto key={item.slug} item={item}/>)
+                items.map(item => <Producto key={item.slug} item={item} />)
             }
-        </section>
+        </section>        
     )
 }
 export default ListaProductos
