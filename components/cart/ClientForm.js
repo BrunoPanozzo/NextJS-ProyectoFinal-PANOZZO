@@ -8,6 +8,8 @@ import { useCartContext } from "@/context/CartContext"
 import BotonEnviar from "../ui/BotonEnviar"
 import Link from "next/link"
 import { useAuthContext } from "@/context/AuthContext"
+import InputEmail from "../ui/InputEmail"
+import InputText from "../ui/InputText"
 
 const createOrder = async (values, items, montoTotal) => {
 
@@ -94,14 +96,16 @@ const ClientForm = () => {
                             <form onSubmit={handleSubmit} className="bg-white px-8 pt-6 pb-8 mb-4 rounded-xl">
                                 <h2 className="mb-5">Completar los siguientes datos</h2>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
-                                    <input type="nombre" name="nombre" value={user.nombre} onChange={handleChange} required placeholder="Tu nombre"
-                                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
+                                    <input type="text" name="nombre" value={user.nombre} onChange={handleChange} required placeholder="Tu nombre"
+                                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                                    <InputText value={user.nombre} name="nombre" onChange={handleChange} placeholder="Tu nombre">Nombre: </InputText>
                                 </div>
                                 <div className="mb-4">
-                                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Email: </label>
+                                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Email: </label>
                                     <input type="email" name="email" value={user.email} onChange={handleChange} required placeholder="Tu email"
-                                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                                    <InputEmail value={user.email} name="email" onChange={handleChange} >Email: </InputEmail>
                                 </div>
                                 <div className="mb-4">
                                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Direccion: </label>

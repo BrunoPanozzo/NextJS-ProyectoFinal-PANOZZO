@@ -50,6 +50,14 @@ export function AuthProvider({ children }) {
                     displayName: values.nombre,
                   });
                 
+                  //para que se refresque el nombre del nuevo usuario registrado
+                  setUser({
+                    logged: true,
+                    nombre: values.nombre,
+                    email: values.email,
+                    uid: values.uid
+                })
+
                 var msje = ""
                 if (values.email != "admin@coder.com")
                     msje = "El usuario no posee permisos de Administrador, se encuentra habilitado únicamente para realizar compras en la Tienda."

@@ -4,6 +4,8 @@ import { useState } from "react"
 import Boton from "../ui/Boton"
 import { useAuthContext } from "@/context/AuthContext"
 import Link from "next/link"
+import InputText from "../ui/InputText"
+import InputEmail from "../ui/InputEmail"
 
 const LoginForm = () => {
 
@@ -30,14 +32,16 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit} className="bg-white px-8 pt-6 pb-8 mb-4 rounded-xl w-1/3">
                 <h2 className="mb-5">Login</h2>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
                     <input type="text" value={values.nombre} name="nombre" onChange={handleChange} required placeholder="Tu nombre"
-                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputText value={values.nombre} name="nombre" onChange={handleChange} placeholder="Tu nombre" >Nombre: </InputText>  
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Email: </label>
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Email: </label>
                     <input type="email" value={values.email} name="email" onChange={handleChange} required placeholder="Tu email"
-                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                        className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                        <InputEmail value={values.email} name="email" onChange={handleChange} >Email: </InputEmail>
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Password: </label>

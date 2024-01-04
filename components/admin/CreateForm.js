@@ -8,6 +8,9 @@ import { db, storage } from "@/firebase/config"
 import Link from "next/link"
 import BotonEnviar from "../ui/BotonEnviar"
 import Retornar from "../ui/Retornar"
+import InputText from "../ui/InputText"
+import InputNumber from "../ui/InputNumber"
+import InputSlug from "../ui/InputSlug"
 
 const createProduct = async (values, file) => {
     const storageRef = ref(storage, values.slug)
@@ -59,8 +62,9 @@ const CreateForm = () => {
             <hr />
             <form onSubmit={handleSubmit} className="bg-white px-8 pt-6 pb-8 mb-4 rounded-xl">
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Slug: </label>
-                    <input type="text" value={values.slug} name="slug" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Slug: </label>                    
+                    <input type="text" value={values.slug} name="slug" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputSlug value={values.slug} name="slug" onChange={handleChange} >Slug: </InputSlug> 
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Imagen: </label>
@@ -68,24 +72,28 @@ const CreateForm = () => {
                         className="w-1/2 file:mr-12 file:py-2 file:px-6 file:rounded-2xl file:border-0 file:text-sm file:font-semibold file:text-center file:bg-gray-600 file:text-white hover:file:bg-[#3535da]" />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
-                    <input type="text" value={values.nombre} name="nombre" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
+                    <input type="text" value={values.nombre} name="nombre" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputText value={values.nombre} name="nombre" onChange={handleChange} >Nombre: </InputText> 
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Precio: </label>
-                    <input type="number" value={values.precio} name="precio" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Precio: </label>
+                    <input type="number" value={values.precio} name="precio" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputNumber value={values.precio} name="precio" onChange={handleChange} >Precio: </InputNumber> 
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Stock: </label>
-                    <input type="number" value={values.stock} name="stock" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Stock: </label>
+                    <input type="number" value={values.stock} name="stock" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputNumber value={values.stock} name="stock" onChange={handleChange} >Stock: </InputNumber> 
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Categoría: </label>
-                    <input type="text" value={values.categoria} name="categoria" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
+                    {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Categoría: </label>
+                    <input type="text" value={values.categoria} name="categoria" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
+                    <InputText value={values.categoria} name="categoria" onChange={handleChange} >Categoría: </InputText>
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Descripción: </label>
-                    <textarea value={values.descripcion} name="descripcion" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" rows="5" type="text"></textarea>
+                    <textarea type="text" value={values.descripcion} name="descripcion" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" rows="5"></textarea>
                 </div>
 
                 <div className="flex items-center justify-center font-mono text-lg">
