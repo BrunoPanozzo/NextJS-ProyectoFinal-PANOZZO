@@ -5,12 +5,12 @@ import Boton from "../ui/Boton"
 import { doc, setDoc } from "firebase/firestore"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { db, storage } from "@/firebase/config"
-import Link from "next/link"
 import BotonEnviar from "../ui/BotonEnviar"
 import Retornar from "../ui/Retornar"
 import InputText from "../ui/InputText"
 import InputNumber from "../ui/InputNumber"
 import InputSlug from "../ui/InputSlug"
+import Swal from "sweetalert2"
 
 const createProduct = async (values, file) => {
     const storageRef = ref(storage, values.slug)
@@ -50,10 +50,42 @@ const CreateForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(true)
-        await createProduct(values, file)
-        setAltaExitosa(true)
-        setLoading(false)
+        if (userValid()) {            
+            setLoading(true)
+            await createProduct(values, file)
+            setAltaExitosa(true)
+            setLoading(false)
+        }
+        else {
+            Swal.fire({
+                title: 'Ingresó un dato inválido.',
+                icon: 'warning',
+                text: 'Corriga el dato para poder dar de alta el producto.'
+            })
+        }
+    }
+
+    //función para validar precio y stock, solo permite numeros
+    const validarNumero = (numero) => {
+        return /^[0-9]+$/.test(numero)
+    }
+
+    //función para validar el slug
+    const validarSlug = (slug) => {
+        return validarURL(`http://${process.env.NEXT_PUBLIC_API_URL}/${slug}`) && (!slug.includes('%'))
+    }
+
+    function validarURL(miurl) {
+        try {
+            new URL(miurl);
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
+
+    const userValid = () => {
+        return validarSlug(values.slug) && validarNumero(values.precio) && validarNumero(values.stock)
     }
 
     return (
@@ -64,7 +96,7 @@ const CreateForm = () => {
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Slug: </label>                    
                     <input type="text" value={values.slug} name="slug" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputSlug value={values.slug} name="slug" onChange={handleChange} >Slug: </InputSlug> 
+                    <InputSlug value={values.slug} name="slug" onChange={handleChange} >Slug: </InputSlug>
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Imagen: </label>
@@ -74,17 +106,17 @@ const CreateForm = () => {
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Nombre: </label>
                     <input type="text" value={values.nombre} name="nombre" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputText value={values.nombre} name="nombre" onChange={handleChange} >Nombre: </InputText> 
+                    <InputText value={values.nombre} name="nombre" onChange={handleChange} >Nombre: </InputText>
                 </div>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Precio: </label>
                     <input type="number" value={values.precio} name="precio" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputNumber value={values.precio} name="precio" onChange={handleChange} >Precio: </InputNumber> 
+                    <InputNumber value={values.precio} name="precio" onChange={handleChange} >Precio: </InputNumber>
                 </div>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Stock: </label>
                     <input type="number" value={values.stock} name="stock" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputNumber value={values.stock} name="stock" onChange={handleChange} >Stock: </InputNumber> 
+                    <InputNumber value={values.stock} name="stock" onChange={handleChange} >Stock: </InputNumber>
                 </div>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Categoría: </label>

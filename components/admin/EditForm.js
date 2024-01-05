@@ -9,6 +9,7 @@ import Retornar from "../ui/Retornar"
 import BotonEnviar from "../ui/BotonEnviar"
 import InputText from "../ui/InputText"
 import InputNumber from "../ui/InputNumber"
+import Swal from "sweetalert2";
 
 const updateProduct = async (slug, values, file) => {
     let fileURL = values.imagen
@@ -54,10 +55,28 @@ const EditForm = ({ producto }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(true)
-        await updateProduct(producto.slug, values, file)
-        setEditExitoso(true)
-        setLoading(false)
+        if (userValid()) {
+            setLoading(true)
+            await updateProduct(producto.slug, values, file)
+            setEditExitoso(true)
+            setLoading(false)
+        }
+        else {
+            Swal.fire({
+                title: 'Ingresó un dato inválido.',
+                icon: 'warning',
+                text: 'Corriga el dato para poder modificar el producto.'
+            })
+        }
+    }
+
+    //función para validar precio y stock, solo permite numeros
+    const validarNumero = (numero) => {
+        return /^[0-9]+$/.test(numero)
+    }   
+
+    const userValid = () => {
+        return validarNumero(values.precio) && validarNumero(values.stock)
     }
 
     return (
@@ -78,12 +97,12 @@ const EditForm = ({ producto }) => {
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Precio: </label>
                     <input type="number" value={values.precio} name="precio" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputNumber value={values.precio} name="precio" onChange={handleChange} >Precio: </InputNumber> 
+                    <InputNumber value={values.precio} name="precio" onChange={handleChange} >Precio: </InputNumber>
                 </div>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Stock: </label>
                     <input type="number" value={values.stock} name="stock" onChange={handleChange} required className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" /> */}
-                    <InputNumber value={values.stock} name="stock" onChange={handleChange} >Stock: </InputNumber> 
+                    <InputNumber value={values.stock} name="stock" onChange={handleChange} >Stock: </InputNumber>
                 </div>
                 <div className="mb-4">
                     {/* <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">Categoría: </label>

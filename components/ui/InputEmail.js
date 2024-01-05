@@ -20,7 +20,7 @@ const InputEmail = ({ children, className, ...args }) => {
             <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">
                 {children}
             </label>
-            <input type="email" onKeyDown={(e) => validar(e.target.value)} required placeholder="Tu email" className={`w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono ${className} ${valido}`}
+            <input type="email" onKeyDown={(e) => validar(e.target.value)} onBlur={(e) => validar(e.target.value)} required placeholder="Tu email" className={`w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono ${className} ${valido}`}
                 {...args} />
         </div>
     )

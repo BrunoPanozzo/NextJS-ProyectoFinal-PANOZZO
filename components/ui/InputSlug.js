@@ -8,7 +8,7 @@ const InputSlug = ({ children, className, ...args }) => {
 
     //función para validar el slug
     function validar(slug) {
-        validarURL(`http://${process.env.NEXT_PUBLIC_API_URL}/${slug}`)
+        validarURL(`http://${process.env.NEXT_PUBLIC_API_URL}/${slug}`) && (!slug.includes('%'))
             ?
             setValido("")
             :
@@ -29,7 +29,7 @@ const InputSlug = ({ children, className, ...args }) => {
             <label className="block text-gray-700 text-lg font-bold mb-2 font-mono">
                 {children}
             </label>
-            <input type="text" onKeyDown={(e) => validar(e.target.value)} required className={`w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono ${className} ${valido}`}
+            <input type="text" onKeyDown={(e) => validar(e.target.value)} onBlur={(e) => validar(e.target.value)} required className={`w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono ${className} ${valido}`}
                 {...args} />
         </div>
     )

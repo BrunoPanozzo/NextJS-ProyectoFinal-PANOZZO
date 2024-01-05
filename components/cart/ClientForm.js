@@ -10,6 +10,7 @@ import Link from "next/link"
 import { useAuthContext } from "@/context/AuthContext"
 import InputEmail from "../ui/InputEmail"
 import InputText from "../ui/InputText"
+import Swal from "sweetalert2";
 
 const createOrder = async (values, items, montoTotal) => {
 
@@ -66,11 +67,34 @@ const ClientForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(true)
-        const nroOrdenCompra = await createOrder(values, cart, totalMonto().toLocaleString())
-        setOrderId(nroOrdenCompra)
-        setFinalizarCompra(true)
-        setLoading(false)
+        if (userValid()) {            
+            setLoading(true)
+            const nroOrdenCompra = await createOrder(values, cart, totalMonto().toLocaleString())
+            setOrderId(nroOrdenCompra)
+            setFinalizarCompra(true)
+            setLoading(false)
+        }
+        else {
+            Swal.fire({
+                title: 'Ingresó un dato inválido.',
+                icon: 'warning',
+                text: 'Corriga el dato para poder generar la orden de compra.'
+            })
+        }
+    }
+
+    //función para validar el nombre, solo permite letras y el caracter de espacio vacío
+    const validarNombre = (nombre) => {
+        return /^[a-z A-Z]+$/.test(nombre)
+    }
+
+    //función para validar un email
+    function validarEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
+    const userValid = () => {
+        return validarNombre(user.nombre) && validarEmail(user.email)
     }
 
     return (

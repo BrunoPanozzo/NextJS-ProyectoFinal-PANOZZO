@@ -8,11 +8,11 @@ const UserLogin = () => {
 
     const { user } = useAuthContext()
 
-    const nombreUsuario = user.nombre
-    
+    const nombreUsuario = user.nombre      
+
     return (
         <div className="sticky top-0">
-            <Link className="flex flex-row" href="/admin">
+            <Link className="flex flex-row" href="/admin">  
                 <Image className="align-middle text-center font-normal py-1 px-3 leading-normal btn-ligth relative"
                     src={"/imgs/NavBar/login.png"}
                     alt='User LogIn'
