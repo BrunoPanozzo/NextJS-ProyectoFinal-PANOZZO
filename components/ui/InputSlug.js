@@ -18,11 +18,9 @@ const InputSlug = ({ children, className, ...args }) => {
     function validarURL(miurl) {
         try {
             new URL(miurl);
-            console.log(new URL(miurl))
             return true;
         } catch (err) {
             return false;
-            console.log("invalido")
         }
     }
 

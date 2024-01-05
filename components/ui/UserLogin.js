@@ -8,9 +8,8 @@ const UserLogin = () => {
 
     const { user } = useAuthContext()
 
-    console.log(user)
-    console.log(user.nombre)
     const nombreUsuario = user.nombre
+    
     return (
         <div className="sticky top-0">
             <Link className="flex flex-row" href="/admin">

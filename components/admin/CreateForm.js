@@ -113,7 +113,7 @@ const CreateForm = () => {
                                     </BotonEnviar>
                                     :
                                     <div className="flex flex-row items-center justify-center font-mono text-lg">
-                                        <Boton type="submit" className="font-mono text-lg my-4 hover:bg-[#3535da]">Aceptar</Boton>
+                                        <Boton type="submit" className="font-mono text-lg my-4">Aceptar</Boton>
                                         <Retornar className="font-mono text-lg my-4 ml-10 hover:bg-[#3535da]">Volver</Retornar>
                                     </div>
                                 }

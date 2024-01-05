@@ -25,7 +25,7 @@ const Producto = ({ item }) => {
             </Link>
 
             <Link href={ref}>
-                <Boton className="mb-6 text-sm align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]">
+                <Boton className="mb-6 text-sm align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white ">
                     Ver detalle
                 </Boton>
             </Link>

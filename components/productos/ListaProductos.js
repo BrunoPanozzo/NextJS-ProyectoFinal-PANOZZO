@@ -1,3 +1,4 @@
+import NotFound from '@/app/not-found';
 import Producto from './Producto'
 
 const ListaProductos = async ({ categoria }) => {
@@ -11,6 +12,11 @@ const ListaProductos = async ({ categoria }) => {
         console.error('Fetch error:', error);
         return null
     }
+
+    if (!items)
+        return (
+            <NotFound />
+        )
 
     return (
         <section className="container m-auto flex justify-center items-center gap-12 flex-wrap">

@@ -69,7 +69,6 @@ const ClientForm = () => {
         setLoading(true)
         const nroOrdenCompra = await createOrder(values, cart, totalMonto().toLocaleString())
         setOrderId(nroOrdenCompra)
-        // console.log(result)
         setFinalizarCompra(true)
         setLoading(false)
     }
@@ -82,7 +81,7 @@ const ClientForm = () => {
                     <div className="flex flex-col items-center justify-center font-mono text-lg">
                         <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">{`Orden de compra  generada exitosamente!!`}</h2>
                         <Link href="/tienda/todos">
-                            <Boton className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]" onClick={() => clearCart()}>Volver a la Tienda</Boton>
+                            <Boton className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white " onClick={() => clearCart()}>Volver a la Tienda</Boton>
                         </Link>
                     </div>
                     :
@@ -113,7 +112,7 @@ const ClientForm = () => {
                                         className="w-full shadow border border-blue-100 rounded py-2 px-3 text-gray-700 font-mono" />
                                 </div>
                                 <div className="flex flex-col items-center justify-center ">
-                                    <Boton type="submit" className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]">Finalizar mi compra</Boton>
+                                    <Boton type="submit" className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white ">Finalizar mi compra</Boton>
                                 </div>
                             </form>
                         }

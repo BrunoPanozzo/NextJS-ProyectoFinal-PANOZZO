@@ -67,7 +67,7 @@ const Contador = ({ item }) => {
                                 +
                             </Boton>
                         </div>
-                        <Boton className="text-xl mt-5 align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white hover:bg-[#3535da]" onClick={() => onAdd(contador)}>
+                        <Boton className="text-xl mt-5 align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white " onClick={() => onAdd(contador)}>
                             Agregar al carrito
                         </Boton>
                     </div>
