@@ -49,6 +49,9 @@ const DetalleProducto = async ({ slug }) => {
                     <div>
                         <p className="text-center pb-10 text-5xl font-bold">$ {producto.precio.toLocaleString()}</p>
                         <Contador item={producto} />
+                        {
+                            producto.stock === 0 && <p className="text-center pb-10 text-3xl font-bold text text-red-600">No hay stock de este producto</p>
+                        }
                     </div>
                 </section>
                 <section className="mt-12 pt-20 text-2xl content-start">
