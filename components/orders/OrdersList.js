@@ -1,4 +1,4 @@
-import OrderItem from "./OrderItem"
+import DetalleOrden from "./DetalleOrden"
 
 const OrdersList = ({ orders }) => {
 
@@ -13,7 +13,7 @@ const OrdersList = ({ orders }) => {
             <h2 className="pt-12 pb-12 text-3xl font-bold text-center">Ud. realizó un total de <mark className="text-5xl text-red-700 bg-white">{orders.length}</mark> compras en nuestra tienda.</h2>
             <h2 className="pt-12 pb-12 text-3xl font-bold text-center">Pagó un total de <mark className="text-5xl text-red-700 bg-white">$ {costoTodasLasCompras.toLocaleString()}</mark>.</h2>
             {orders.map(order => (
-                <OrderItem key={order.nroOrden} order={order} />
+                <DetalleOrden key={order.nroOrden} order={order} />
             ))}
         </div>
     )
