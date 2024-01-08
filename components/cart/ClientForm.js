@@ -106,7 +106,7 @@ const ClientForm = () => {
                 <></>
             )
     }
-    
+
     const handleChange = (e) => {
         setValues({
             ...values,
@@ -127,11 +127,20 @@ const ClientForm = () => {
             setLoading(false)
         }
         else {
-            Swal.fire({
-                title: 'Ingresó un dato inválido.',
-                icon: 'warning',
-                text: 'Corriga el dato para poder generar la orden de compra.'
-            })
+            if (user.logged) {
+                Swal.fire({
+                    title: 'Ingresó un dato inválido.',
+                    icon: 'warning',
+                    text: 'Corriga el dato para poder generar la orden de compra.'
+                })
+            }
+            else {
+                Swal.fire({
+                    title: 'Debe ingresar previamente a nuestro sitio para confirmar la compra.',
+                    icon: 'warning',
+                    text: 'Realice el login para poder generar la orden de compra correspondiente.'
+                })
+            }
         }
     }
 
