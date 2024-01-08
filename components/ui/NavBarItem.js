@@ -12,10 +12,10 @@ const NavBarItem = ({enlace}) => {
     var ref = ""
     if (enlace.label === "Mis Compras")
     {
-        if (user.logged)
+        if (user && user.logged)
             ref = `/orders/` + user.email
         else
-            ref = `/orders/`
+            ref = `/admin/`
     }
     else
         ref = enlace.href
