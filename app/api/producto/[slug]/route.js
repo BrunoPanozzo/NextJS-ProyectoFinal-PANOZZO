@@ -10,19 +10,19 @@ export async function GET(_, { params }) {
 
         const docRef = doc(db, "productos", slug)
 
-        //Uso onSnapshot para actualizaciones en tiempo real
-        const unsubscribe = onSnapshot(docRef, (doc) => {
-            const responseData = doc.data()
-            return NextResponse.json(responseData)
-        })
+        // //Uso onSnapshot para actualizaciones en tiempo real
+        // const unsubscribe = onSnapshot(docRef, (doc) => {
+        //     const responseData = doc.data()
+        //     return NextResponse.json(responseData)
+        // })
 
-        // const docSnapshot = await getDoc(docRef)
+        const docSnapshot = await getDoc(docRef)
 
-        // if (docSnapshot.exists()) {
-        //     return NextResponse.json(docSnapshot.data());
-        // } else {
-        //     return NextResponse.error(404, 'Product not found');
-        // }
+        if (docSnapshot.exists()) {
+            return NextResponse.json(docSnapshot.data());
+        } else {
+            return NextResponse.error(404, 'Product not found');
+        }
 
     } catch (error) {
         console.error('Error fetching product:', error);
