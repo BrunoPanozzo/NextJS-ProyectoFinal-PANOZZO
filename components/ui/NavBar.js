@@ -23,6 +23,10 @@ const enlaces = [
         label: "Contacto",
         href: "/contacto"
     },
+    {
+        label: "Mis Compras",
+        href: "/orders"
+    },
 ]
 
 const NavBar = () => {

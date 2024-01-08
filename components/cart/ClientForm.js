@@ -87,6 +87,8 @@ const ClientForm = () => {
 
     const cantidadArticulosComprados = totalItems()
 
+    const ref = `/orders/` + user.email
+
     //cuando el CART está vacío no se muestra este form
     if (cantidadArticulosComprados === 0) {
         if (finalizarCompra)
@@ -94,7 +96,7 @@ const ClientForm = () => {
                 <div className="flex flex-col items-center justify-center font-mono text-lg">
                     <h2 className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">Orden de compra generada exitosamente!!</h2>
                     <p className="text-2xl border-b border-gray-200 pb-4 mb-4 pt-12 font-bold text-center">El número asignado a la compra es {orderId}</p>
-                    <Link href="/tienda/todos">
+                    <Link href={ref}>
                         <Boton className="text-2xl align-middle text-center border rounded-2xl py-2 px-6 bg-gray-600 text-white ">Consultar mis Compras</Boton>
                     </Link>
                 </div>
@@ -116,7 +118,7 @@ const ClientForm = () => {
         e.preventDefault()
         if (userValid()) {
             setLoading(true)
-            const nroOrdenCompra = await createOrder(values, cart, totalMonto().toLocaleString())
+            const nroOrdenCompra = await createOrder(values, cart, totalMonto())
             //vacio el carrito
             clearCart()
             //
