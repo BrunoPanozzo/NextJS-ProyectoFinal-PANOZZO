@@ -63,7 +63,6 @@ const ProductsTable = async () => {
                                         <div className="flex justify-center items-center gap-2">
                                             <Link
                                                 href={`/admin/edit/${item.slug}`}
-                                            // className="rounded bg-green-400 p-2 text-white"
                                             >
                                                 <Image
                                                     src={Editar}
@@ -75,7 +74,6 @@ const ProductsTable = async () => {
 
                                             <Link
                                                 href={`/admin/delete/${item.slug}`}
-                                            // className="rounded bg-red-400 p-2 text-white"
                                             >
                                                 <Image
                                                     src={Eliminar}

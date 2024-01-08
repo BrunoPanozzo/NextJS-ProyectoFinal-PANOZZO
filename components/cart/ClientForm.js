@@ -71,11 +71,8 @@ const createOrder = async (values, items, montoTotal) => {
 const ClientForm = () => {
 
     const [orderId, setOrderId] = useState()
-
     const { user } = useAuthContext()
-
     const { cart, totalItems, totalMonto, clearCart } = useCartContext()
-
     const [values, setValues] = useState({
         nombre: user.nombre,
         email: user.email,

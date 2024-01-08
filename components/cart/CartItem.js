@@ -1,4 +1,5 @@
 'use client'
+
 import { useCartContext } from "@/context/CartContext";
 import Image from "next/image";
 import Boton from "../ui/Boton";

@@ -22,8 +22,6 @@ export function generateStaticParams () {
     ]
 }
 
-// export const revalidate = 1800
-
 const ProductosPage = ({ params }) => {
 
     const rutasDinamicas = [

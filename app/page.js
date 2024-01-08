@@ -1,7 +1,4 @@
-import Contador from "@/components/ui/Contador";
-import NavBar from "@/components/ui/NavBar";
 import Image from "next/image";
-
 
 export const metadata = {
   title: 'Samsung Argentina | Dispositivos Móviles | TV &amp; Audio | Línea Hogar',

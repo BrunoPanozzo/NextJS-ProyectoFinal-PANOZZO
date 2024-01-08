@@ -42,7 +42,6 @@ const EditForm = ({ producto }) => {
         imagen
     })
     const [file, setFile] = useState(null)
-
     const [editExitoso, setEditExitoso] = useState(false)
     const [loading, setLoading] = useState(false)
 

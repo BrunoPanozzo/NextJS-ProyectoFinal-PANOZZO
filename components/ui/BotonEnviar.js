@@ -9,8 +9,6 @@ const BotonEnviar = ({ children}) => {
             </svg>
             {children}
         </button>
-
-
     )
 }
 

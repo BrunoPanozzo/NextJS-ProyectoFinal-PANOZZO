@@ -17,9 +17,6 @@ export async function POST(request) {
     const productData = request.body.values
     const file = request.body.file
 
-    // console.log(productData);
-    // console.log(request);
-
     // const storageRef = ref(storage, productData.slug)
     // const fileSnapshot = await uploadBytes(storageRef, file)
 

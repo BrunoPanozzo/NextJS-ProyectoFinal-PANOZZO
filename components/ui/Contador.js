@@ -1,4 +1,5 @@
 'use client'
+
 import { useCartContext } from '@/context/CartContext';
 import { useState, useEffect } from 'react'
 import styles from './contador.module.css'

@@ -16,7 +16,6 @@ const deleteProduct = async (slug) => {
 const DeleteForm = ({ producto }) => {
 
     const { nombre, slug, precio, stock, imagen } = producto
-
     const [deleteExitoso, setDeleteExitoso] = useState(false)
     const [loading, setLoading] = useState(false)
 

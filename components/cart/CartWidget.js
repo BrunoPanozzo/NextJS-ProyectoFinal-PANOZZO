@@ -1,4 +1,5 @@
 'use client'
+
 import { useCartContext } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +31,6 @@ const CartWidget = () => {
                 </Link>
         </div>
     )
-
 }
 
 export default CartWidget
