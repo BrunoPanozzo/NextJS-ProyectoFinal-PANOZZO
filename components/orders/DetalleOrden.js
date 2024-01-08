@@ -18,11 +18,14 @@ const DetalleOrden = ({ order }) => {
         }
     }
 
+    const fecha = new Date(order.fecha).toLocaleDateString();
+    const hora = new Date(order.fecha).toLocaleTimeString();
+ 
     return (
         <div className="m-5 p-1 w-full container text-center hover:bg-gray-400 border-blue-200 border-4 rounded">
             <div className="flex flex-col items-center justify-center ">
                 <h2 className="pb-1 text-xl font-bold mb-3">Nro de Compra: {order.nroOrden}</h2>
-                <p className="pb-1 text-xl font-bold mb-0">Fecha: {order.fecha}</p>
+                <p className="pb-1 text-xl font-bold mb-0">Fecha: {fecha} {hora}</p>
                 {
                     order.items.map(async item => (
                         <div key={item.slug} className="flex flex-row items-center justify-center ">
